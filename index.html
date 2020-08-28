@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+	<div class="outer">
+		<div class="inner_fixed header">Weather App</div>
+		<div class="inner_rem">
+			<div class="user-input">
+				<input type="text" id="city" required="Enter a city" placeholder="City Name">
+				<br>
+				<button type="submit" namee="submit" onclick="getData()" >Check Weather</button>
+				<p id="res"></p>
+			</div>
+		</div>
+		<div class="inner_fixed footer">The data is fetched from blablabla API.</div>
+	</div>
+</body>
+</html>
