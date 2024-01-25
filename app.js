@@ -34,7 +34,11 @@ function getTemp(city){
 		document.body.style.backgroundPosition = "center";
 
 	})
-	.catch(error=>console.log(error));
+	.catch(error=>
+		{
+			console.log(error);
+			alert(error);
+		});
 	}
 }
 
