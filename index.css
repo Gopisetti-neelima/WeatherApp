@@ -1,6 +1,6 @@
 body{
-	background-image: url("assets/day.jpg");
 	color: beige ;
+	background-image: url('https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif');
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	background-size: cover;
 	background-position: center;
@@ -20,7 +20,12 @@ body{
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-decoration: solid;
+	text-shadow: dimgrey 3; 
 }
+
 
 .target{
 	margin: 30px;

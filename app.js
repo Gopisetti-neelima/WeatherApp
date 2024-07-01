@@ -1,56 +1,56 @@
-function getTemp(city){
-	var key = '195bb093d34e584a7b5f090d1e107a88';
-	var unit = 'metric';
-	let res="";
-	if(city!="")
-	{
-		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=${unit}`)
-	.then(res=>res.json())
-	.then(d=>{
-		console.log(d);
-		temperature = d.main["temp"];
-		document.getElementById('t').innerHTML = temperature + "°C";
-		document.getElementById('fl').innerHTML = d.main["feels_like"] + "°C";
-		document.getElementById('lt').innerHTML = d.main["temp_min"] + "°C";
-		document.getElementById('ht').innerHTML = d.main["temp_max"] + "°C";
-		document.getElementById('hum').innerHTML = d.main["humidity"] + "%";
-		console.log(d);
+const apiKey = '195bb093d34e584a7b5f090d1e107a88';
 
-		wallpaper = "assets/day.jpg";
-		if(temperature < 20){
-			wallpaper = "assets/day-winter.jpg";
-		}
+function getTemp(city) {
+    if (city !== "") {
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appId=${apiKey}`,
+            method: 'GET',
+            success: function(data) {
+                console.log(data);
 
-		wtype = d.weather[0]["main"];
-		if(wtype == "Rain"){
-			wallpaper = "assets/rain.jpg";
-		}
-		else if(wtype == "Snow")
-			wallpaper = "assets/day-winter.jpg";
-		else if(wtype == "Spring")
-			wallpaper = "assets/day-spring.jpg";
-			
-		document.body.style.backgroundImage = 'url("' + wallpaper + '")';
-		document.body.style.backgroundSize = "cover";
-		document.body.style.backgroundPosition = "center";
+                const temperature = kelvinToCelsius(data.main.temp);
+                $('#t').html(temperature + "°C");
+                $('#fl').html(kelvinToCelsius(data.main.feels_like) + "°C");
+                $('#lt').html(kelvinToCelsius(data.main.temp_min) + "°C");
+                $('#ht').html(kelvinToCelsius(data.main.temp_max) + "°C");
+                $('#hum').html(data.main.humidity + "%");
 
-	})
-	.catch(error=>
-		{
-			console.log(error);
-			alert('Invalid city name!! Try again');
-		}
-		);
-	}
+                
+                weatherType = data.weather[0].main;
+
+                if(weatherType == "Mist")
+                {
+                    weatherType = "Clouds";
+                }
+
+                image = "url('https://mdbgo.io/ascensus/mdb-advanced/img/" + (weatherType.toLowerCase()) + ".gif')";
+                console.log(image);
+                document.getElementsByTagName("body")[0].style.backgroundImage = image;
+
+                let description = data.weather[0].description;
+                document.getElementById("description").innerHTML = description;
+
+                let name = city;
+                document.getElementById("name").innerHTML = name;   
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
 }
 
-function FarenheitToCelcius(data){
-	data = parseInt(data);
-	// res = (data-32)*5.0/9.0;
-	return parseInt(data - 273.15) ;
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+function kelvinToCelsius(data) {
+    return Math.round(data - 273.15); 
 }
 
-function getData(){
-	let city = document.getElementById('city').value;
-	res = getTemp(city);
+function getData() {
+    const city = $('#city').val();
+    getTemp(city);
+
+    $('#city').val('');
 }
