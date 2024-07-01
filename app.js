@@ -1,17 +1,18 @@
 function getTemp(city){
 	var key = '195bb093d34e584a7b5f090d1e107a88';
+	var unit = 'metric';
 	let res="";
 	if(city!="")
 	{
-		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=${unit}`)
 	.then(res=>res.json())
 	.then(d=>{
 		console.log(d);
-		temperature = FarenheitToCelcius(d.main["temp"]);
+		temperature = d.main["temp"];
 		document.getElementById('t').innerHTML = temperature + "°C";
-		document.getElementById('fl').innerHTML = FarenheitToCelcius(d.main["feels_like"]) + "°C";
-		document.getElementById('lt').innerHTML = FarenheitToCelcius(d.main["temp_min"]) + "°C";
-		document.getElementById('ht').innerHTML = FarenheitToCelcius(d.main["temp_max"]) + "°C";
+		document.getElementById('fl').innerHTML = d.main["feels_like"] + "°C";
+		document.getElementById('lt').innerHTML = d.main["temp_min"] + "°C";
+		document.getElementById('ht').innerHTML = d.main["temp_max"] + "°C";
 		document.getElementById('hum').innerHTML = d.main["humidity"] + "%";
 		console.log(d);
 
@@ -34,7 +35,12 @@ function getTemp(city){
 		document.body.style.backgroundPosition = "center";
 
 	})
-	.catch(error=>console.log(error));
+	.catch(error=>
+		{
+			console.log(error);
+			alert('Invalid city name!! Try again');
+		}
+		);
 	}
 }
 
