@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Weather App</title>
-	<link rel="stylesheet" type="text/css" href="index.css">
-	<script type="text/javascript" src="app.js"></script>
-</head>
-<body>
-	<div class="blur-box">
-		<h2>Weather App</h2>
-		<div class="user-input">
-			<input type="text" id="city" required="Enter a city" placeholder="City Name">
-			<button type="submit" namee="submit" onclick="getData()" >🔍</button>
-		</div>
-		<div class="target">
-			<div class="row-flex">
-				<span class="key">Temperature</span>
-				<span class="val" id="t">-</span>
-			</div>
-			<div class="row-flex">
-				<span class="key">Feels like</span>
-				<span class="val" id="fl">-</span>
-			</div>
-			<div class="row-flex">
-				<span class="key">Min Temp</span>
-				<span class="val" id="lt">-</span>
-			</div>
-			<div class="row-flex">
-				<span class="key">Max temp</span>
-				<span class="val" id="ht">-</span>
-			</div>
-			<div class="row-flex">
-				<span class="key">Humidity</span>
-				<span class="val" id="hum">-</span>
-			</div>
-		</div>
-		<p>Data source: openweathermap.org api.</p>
-	</div>
-		
-</body>
+  <head>
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="blur-box" id="wallpaper">
+      <h2>Weather App</h2>
+	  <p  id="name"></p>
+	  <p id="description"></p>
+      <div class="user-input">
+        <input
+          type="text"
+          id="city"
+          required="Enter a city"
+          placeholder="City Name"
+        />
+        <button type="submit" name="submit" onclick="getData()">🔍</button>
+      </div>
+      <div class="target">
+        <div class="row-flex">
+          <span class="key">Temperature</span>
+          <span class="val" id="t">-</span>
+        </div>
+        <div class="row-flex">
+          <span class="key">Feels like</span>
+          <span class="val" id="fl">-</span>
+        </div>
+        <div class="row-flex">
+          <span class="key">Min Temp</span>
+          <span class="val" id="lt">-</span>
+        </div>
+        <div class="row-flex">
+          <span class="key">Max temp</span>
+          <span class="val" id="ht">-</span>
+        </div>
+        <div class="row-flex">
+          <span class="key">Humidity</span>
+          <span class="val" id="hum">-</span>
+        </div>
+      </div>
+      <h4>Data source: openweathermap.org api.</h4>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
 </html>
